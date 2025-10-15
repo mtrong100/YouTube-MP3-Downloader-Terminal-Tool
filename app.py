@@ -137,30 +137,35 @@ def main():
         console.print("Tải tại: https://ffmpeg.org/download.html\n")
         return
 
-    url = Prompt.ask("[bold green]Nhập link YouTube[/bold green]")
-    if not url.strip():
-        console.print("[red]❌ Bạn chưa nhập link.[/red]")
-        return
-
     outdir = get_downloads_folder()
 
-    try:
-        download_youtube_mp3(url.strip(), outdir)
-    except Exception as e:
-        console.print(f"[red]Lỗi khi tải: {e}[/red]")
-        return
+    # --- Vòng lặp để tiếp tục tải ---
+    while True:
+        url = Prompt.ask("[bold green]Nhập link YouTube (hoặc gõ 'exit' để thoát)[/bold green]")
+        if not url.strip():
+            console.print("[red]❌ Bạn chưa nhập link.[/red]")
+            continue
+        if url.lower().strip() == "exit":
+            console.print("[yellow]👋 Thoát chương trình.[/yellow]")
+            break
 
-    latest_file = max(outdir.glob("*.mp3"), key=lambda p: p.stat().st_mtime)
-    size_mb = latest_file.stat().st_size / (1024 * 1024)
-    console.print()
-    console.print(Panel.fit(
-        f"[bold green]✅ Tải thành công![/bold green]\n\n"
-        f"[bold]Tên file:[/bold] {latest_file.name}\n"
-        f"[bold]Kích thước:[/bold] {size_mb:.2f} MB\n"
-        f"[bold]Vị trí:[/bold] {latest_file.parent}",
-        title="[cyan]Hoàn tất[/cyan]",
-        border_style="green"
-    ))
+        try:
+            download_youtube_mp3(url.strip(), outdir)
+            latest_file = max(outdir.glob("*.mp3"), key=lambda p: p.stat().st_mtime)
+            size_mb = latest_file.stat().st_size / (1024 * 1024)
+            console.print()
+            console.print(Panel.fit(
+                f"[bold green]✅ Tải thành công![/bold green]\n\n"
+                f"[bold]Tên file:[/bold] {latest_file.name}\n"
+                f"[bold]Kích thước:[/bold] {size_mb:.2f} MB\n"
+                f"[bold]Vị trí:[/bold] {latest_file.parent}",
+                title="[cyan]Hoàn tất[/cyan]",
+                border_style="green"
+            ))
+        except Exception as e:
+            console.print(f"[red]Lỗi khi tải: {e}[/red]")
+
+        console.print()  # dòng trống giữa các lượt tải
 
 if __name__ == "__main__":
     main()
