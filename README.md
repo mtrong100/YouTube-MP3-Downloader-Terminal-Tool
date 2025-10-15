@@ -21,7 +21,7 @@ Giao diện được thiết kế tối giản, dễ nhìn, thân thiện trên 
 - Python **3.10** hoặc mới hơn
 - Thư viện:
   ```bash
-  pip install yt-dlp rich
+  pip install yt-dlp rich requests
   ```
 - FFmpeg (dùng để chuyển định dạng sang MP3)
   ```bash
@@ -33,7 +33,7 @@ Giao diện được thiết kế tối giản, dễ nhìn, thân thiện trên 
 
 ## 💻 Cách cài đặt
 
-1. Tải file `ytmp3_simple.py` về máy.
+1. Tải file `app.py` về máy.
 2. Mở **Command Prompt** hoặc **PowerShell**.
 3. Di chuyển đến thư mục chứa file:
    ```bash
@@ -41,7 +41,7 @@ Giao diện được thiết kế tối giản, dễ nhìn, thân thiện trên 
    ```
 4. Chạy tool:
    ```bash
-   python ytmp3_simple.py
+   python app.py
    ```
 
 ---
