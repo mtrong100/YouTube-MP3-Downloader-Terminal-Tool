@@ -6,6 +6,9 @@ Giao diện được thiết kế tối giản, dễ nhìn, thân thiện trên 
 
 ---
 
+## 📸 Screenshot
+![Screenshot](https://i.postimg.cc/cC5WJxW8/Screenshot-2025-10-17-153823.png)
+
 ## 🚀 Tính năng
 
 - 🎧 Tải **YouTube → MP3** với chất lượng tốt nhất tự động.
